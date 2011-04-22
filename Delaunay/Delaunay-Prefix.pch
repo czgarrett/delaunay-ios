@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'Delaunay' target in the 'Delaunay' project
+//
+
+#ifdef __OBJC__
+   #import <Foundation/Foundation.h>
+   #import <UIKit/UIKit.h>
+#endif

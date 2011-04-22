@@ -1,0 +1,569 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		834DEA181356705A000191D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834DEA171356705A000191D9 /* Foundation.framework */; };
+		834DEA231356705A000191D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834DEA221356705A000191D9 /* UIKit.framework */; };
+		834DEA241356705A000191D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834DEA171356705A000191D9 /* Foundation.framework */; };
+		834DEA261356705A000191D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834DEA251356705A000191D9 /* CoreGraphics.framework */; };
+		834DEA291356705A000191D9 /* libDelaunay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 834DEA141356705A000191D9 /* libDelaunay.a */; };
+		834DEA2F1356705A000191D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 834DEA2D1356705A000191D9 /* InfoPlist.strings */; };
+		834DEA321356705A000191D9 /* DelaunayTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 834DEA311356705A000191D9 /* DelaunayTests.h */; };
+		834DEA341356705A000191D9 /* DelaunayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA331356705A000191D9 /* DelaunayTests.m */; };
+		834DEA40135670D7000191D9 /* NSArray+Delaunay.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA3E135670D7000191D9 /* NSArray+Delaunay.h */; };
+		834DEA41135670D7000191D9 /* NSArray+Delaunay.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA3F135670D7000191D9 /* NSArray+Delaunay.m */; };
+		834DEA42135670D7000191D9 /* NSArray+Delaunay.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA3F135670D7000191D9 /* NSArray+Delaunay.m */; };
+		834DEA4513567176000191D9 /* DelaunayEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA4313567176000191D9 /* DelaunayEdge.h */; };
+		834DEA4613567176000191D9 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA4413567176000191D9 /* DelaunayEdge.m */; };
+		834DEA4713567176000191D9 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA4413567176000191D9 /* DelaunayEdge.m */; };
+		834DEA4A13567228000191D9 /* DelaunaySite.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA4813567227000191D9 /* DelaunaySite.h */; };
+		834DEA4B13567228000191D9 /* DelaunaySite.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA4913567228000191D9 /* DelaunaySite.m */; };
+		834DEA4C13567228000191D9 /* DelaunaySite.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA4913567228000191D9 /* DelaunaySite.m */; };
+		834DEA4F135688B2000191D9 /* NSMutableArray+Delaunay.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA4D135688B1000191D9 /* NSMutableArray+Delaunay.h */; };
+		834DEA50135688B2000191D9 /* NSMutableArray+Delaunay.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA4E135688B2000191D9 /* NSMutableArray+Delaunay.m */; };
+		834DEA51135688B2000191D9 /* NSMutableArray+Delaunay.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA4E135688B2000191D9 /* NSMutableArray+Delaunay.m */; };
+		834DEA5413568C7B000191D9 /* DelaunayPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA5213568C7B000191D9 /* DelaunayPolygon.h */; };
+		834DEA5513568C7B000191D9 /* DelaunayPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA5313568C7B000191D9 /* DelaunayPolygon.m */; };
+		834DEA5613568C7B000191D9 /* DelaunayPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA5313568C7B000191D9 /* DelaunayPolygon.m */; };
+		834DEA5913568EF8000191D9 /* DelaunayOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA5713568EF8000191D9 /* DelaunayOrientation.h */; };
+		834DEA5A13568EF8000191D9 /* DelaunayOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA5813568EF8000191D9 /* DelaunayOrientation.m */; };
+		834DEA5B13568EF8000191D9 /* DelaunayOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA5813568EF8000191D9 /* DelaunayOrientation.m */; };
+		834DEA76135779EE000191D9 /* DelaunayEdgeReorderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA74135779EE000191D9 /* DelaunayEdgeReorderer.h */; };
+		834DEA77135779EE000191D9 /* DelaunayEdgeReorderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA75135779EE000191D9 /* DelaunayEdgeReorderer.m */; };
+		834DEA78135779EE000191D9 /* DelaunayEdgeReorderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA75135779EE000191D9 /* DelaunayEdgeReorderer.m */; };
+		834DEA7B135789DC000191D9 /* DelaunayVertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA79135789DB000191D9 /* DelaunayVertex.h */; };
+		834DEA7C135789DC000191D9 /* DelaunayVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA7A135789DC000191D9 /* DelaunayVertex.m */; };
+		834DEA7D135789DC000191D9 /* DelaunayVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA7A135789DC000191D9 /* DelaunayVertex.m */; };
+		834DEA8013578A1E000191D9 /* DelaunayHalfEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA7E13578A1E000191D9 /* DelaunayHalfEdge.h */; };
+		834DEA8113578A1E000191D9 /* DelaunayHalfEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA7F13578A1E000191D9 /* DelaunayHalfEdge.m */; };
+		834DEA8213578A1E000191D9 /* DelaunayHalfEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA7F13578A1E000191D9 /* DelaunayHalfEdge.m */; };
+		834DEA851357D23C000191D9 /* DelaunayLineSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA831357D23B000191D9 /* DelaunayLineSegment.h */; };
+		834DEA861357D23C000191D9 /* DelaunayLineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA841357D23C000191D9 /* DelaunayLineSegment.m */; };
+		834DEA871357D23C000191D9 /* DelaunayLineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 834DEA841357D23C000191D9 /* DelaunayLineSegment.m */; };
+		834DEA891357D72C000191D9 /* Delaunay.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA881357D72C000191D9 /* Delaunay.h */; };
+		834DEA8B1357E743000191D9 /* DelaunayCoordinate.h in Headers */ = {isa = PBXBuildFile; fileRef = 834DEA8A1357E742000191D9 /* DelaunayCoordinate.h */; };
+		83C6426B135B5AFF00F54C9E /* DelaunayVoronoi.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C64269135B5AFF00F54C9E /* DelaunayVoronoi.h */; };
+		83C6426C135B5AFF00F54C9E /* DelaunayVoronoi.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C6426A135B5AFF00F54C9E /* DelaunayVoronoi.m */; };
+		83C6426D135B5AFF00F54C9E /* DelaunayVoronoi.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C6426A135B5AFF00F54C9E /* DelaunayVoronoi.m */; };
+		83C64270135B6E0400F54C9E /* DelaunaySiteList.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C6426E135B6E0400F54C9E /* DelaunaySiteList.h */; };
+		83C64271135B6E0400F54C9E /* DelaunaySiteList.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C6426F135B6E0400F54C9E /* DelaunaySiteList.m */; };
+		83C64272135B6E0400F54C9E /* DelaunaySiteList.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C6426F135B6E0400F54C9E /* DelaunaySiteList.m */; };
+		83C64275135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C64273135B754000F54C9E /* DelaunayHalfEdgePriorityQueue.h */; };
+		83C64276135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C64274135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m */; };
+		83C64277135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C64274135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m */; };
+		83C6427A135B764800F54C9E /* DelaunayEdgeList.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C64278135B764800F54C9E /* DelaunayEdgeList.h */; };
+		83C6427B135B764800F54C9E /* DelaunayEdgeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C64279135B764800F54C9E /* DelaunayEdgeList.m */; };
+		83C6427C135B764800F54C9E /* DelaunayEdgeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C64279135B764800F54C9E /* DelaunayEdgeList.m */; };
+		83C64280135BA2D800F54C9E /* DelaunayVoronoiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C6427F135BA2D800F54C9E /* DelaunayVoronoiTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		834DEA271356705A000191D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 834DEA0B1356705A000191D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 834DEA131356705A000191D9;
+			remoteInfo = Delaunay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		834DEA141356705A000191D9 /* libDelaunay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDelaunay.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		834DEA171356705A000191D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		834DEA1B1356705A000191D9 /* Delaunay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Delaunay-Prefix.pch"; sourceTree = "<group>"; };
+		834DEA211356705A000191D9 /* DelaunayTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelaunayTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		834DEA221356705A000191D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		834DEA251356705A000191D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		834DEA2C1356705A000191D9 /* DelaunayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DelaunayTests-Info.plist"; sourceTree = "<group>"; };
+		834DEA2E1356705A000191D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		834DEA301356705A000191D9 /* DelaunayTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DelaunayTests-Prefix.pch"; sourceTree = "<group>"; };
+		834DEA311356705A000191D9 /* DelaunayTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelaunayTests.h; sourceTree = "<group>"; };
+		834DEA331356705A000191D9 /* DelaunayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelaunayTests.m; sourceTree = "<group>"; };
+		834DEA3E135670D7000191D9 /* NSArray+Delaunay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Delaunay.h"; sourceTree = "<group>"; };
+		834DEA3F135670D7000191D9 /* NSArray+Delaunay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Delaunay.m"; sourceTree = "<group>"; };
+		834DEA4313567176000191D9 /* DelaunayEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdge.h; sourceTree = "<group>"; };
+		834DEA4413567176000191D9 /* DelaunayEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdge.m; sourceTree = "<group>"; };
+		834DEA4813567227000191D9 /* DelaunaySite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunaySite.h; sourceTree = "<group>"; };
+		834DEA4913567228000191D9 /* DelaunaySite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunaySite.m; sourceTree = "<group>"; };
+		834DEA4D135688B1000191D9 /* NSMutableArray+Delaunay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Delaunay.h"; sourceTree = "<group>"; };
+		834DEA4E135688B2000191D9 /* NSMutableArray+Delaunay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Delaunay.m"; sourceTree = "<group>"; };
+		834DEA5213568C7B000191D9 /* DelaunayPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayPolygon.h; sourceTree = "<group>"; };
+		834DEA5313568C7B000191D9 /* DelaunayPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayPolygon.m; sourceTree = "<group>"; };
+		834DEA5713568EF8000191D9 /* DelaunayOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayOrientation.h; sourceTree = "<group>"; };
+		834DEA5813568EF8000191D9 /* DelaunayOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayOrientation.m; sourceTree = "<group>"; };
+		834DEA74135779EE000191D9 /* DelaunayEdgeReorderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdgeReorderer.h; sourceTree = "<group>"; };
+		834DEA75135779EE000191D9 /* DelaunayEdgeReorderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdgeReorderer.m; sourceTree = "<group>"; };
+		834DEA79135789DB000191D9 /* DelaunayVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayVertex.h; sourceTree = "<group>"; };
+		834DEA7A135789DC000191D9 /* DelaunayVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayVertex.m; sourceTree = "<group>"; };
+		834DEA7E13578A1E000191D9 /* DelaunayHalfEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayHalfEdge.h; sourceTree = "<group>"; };
+		834DEA7F13578A1E000191D9 /* DelaunayHalfEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayHalfEdge.m; sourceTree = "<group>"; };
+		834DEA831357D23B000191D9 /* DelaunayLineSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayLineSegment.h; sourceTree = "<group>"; };
+		834DEA841357D23C000191D9 /* DelaunayLineSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayLineSegment.m; sourceTree = "<group>"; };
+		834DEA881357D72C000191D9 /* Delaunay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delaunay.h; sourceTree = "<group>"; };
+		834DEA8A1357E742000191D9 /* DelaunayCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayCoordinate.h; sourceTree = "<group>"; };
+		83C64269135B5AFF00F54C9E /* DelaunayVoronoi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayVoronoi.h; sourceTree = "<group>"; };
+		83C6426A135B5AFF00F54C9E /* DelaunayVoronoi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayVoronoi.m; sourceTree = "<group>"; };
+		83C6426E135B6E0400F54C9E /* DelaunaySiteList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunaySiteList.h; sourceTree = "<group>"; };
+		83C6426F135B6E0400F54C9E /* DelaunaySiteList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunaySiteList.m; sourceTree = "<group>"; };
+		83C64273135B754000F54C9E /* DelaunayHalfEdgePriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayHalfEdgePriorityQueue.h; sourceTree = "<group>"; };
+		83C64274135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayHalfEdgePriorityQueue.m; sourceTree = "<group>"; };
+		83C64278135B764800F54C9E /* DelaunayEdgeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdgeList.h; sourceTree = "<group>"; };
+		83C64279135B764800F54C9E /* DelaunayEdgeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdgeList.m; sourceTree = "<group>"; };
+		83C6427E135BA2D800F54C9E /* DelaunayVoronoiTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayVoronoiTests.h; sourceTree = "<group>"; };
+		83C6427F135BA2D800F54C9E /* DelaunayVoronoiTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayVoronoiTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		834DEA111356705A000191D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834DEA181356705A000191D9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		834DEA1D1356705A000191D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834DEA231356705A000191D9 /* UIKit.framework in Frameworks */,
+				834DEA241356705A000191D9 /* Foundation.framework in Frameworks */,
+				834DEA261356705A000191D9 /* CoreGraphics.framework in Frameworks */,
+				834DEA291356705A000191D9 /* libDelaunay.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		834DEA091356705A000191D9 = {
+			isa = PBXGroup;
+			children = (
+				834DEA191356705A000191D9 /* Delaunay */,
+				834DEA2A1356705A000191D9 /* DelaunayTests */,
+				834DEA161356705A000191D9 /* Frameworks */,
+				834DEA151356705A000191D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		834DEA151356705A000191D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				834DEA141356705A000191D9 /* libDelaunay.a */,
+				834DEA211356705A000191D9 /* DelaunayTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		834DEA161356705A000191D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				834DEA171356705A000191D9 /* Foundation.framework */,
+				834DEA221356705A000191D9 /* UIKit.framework */,
+				834DEA251356705A000191D9 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		834DEA191356705A000191D9 /* Delaunay */ = {
+			isa = PBXGroup;
+			children = (
+				834DEA3D1356707B000191D9 /* Classes */,
+				834DEA1A1356705A000191D9 /* Supporting Files */,
+				834DEA881357D72C000191D9 /* Delaunay.h */,
+			);
+			path = Delaunay;
+			sourceTree = "<group>";
+		};
+		834DEA1A1356705A000191D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				834DEA1B1356705A000191D9 /* Delaunay-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		834DEA2A1356705A000191D9 /* DelaunayTests */ = {
+			isa = PBXGroup;
+			children = (
+				83C6427D135BA2BE00F54C9E /* Classes */,
+				834DEA311356705A000191D9 /* DelaunayTests.h */,
+				834DEA331356705A000191D9 /* DelaunayTests.m */,
+				834DEA2B1356705A000191D9 /* Supporting Files */,
+			);
+			path = DelaunayTests;
+			sourceTree = "<group>";
+		};
+		834DEA2B1356705A000191D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				834DEA2C1356705A000191D9 /* DelaunayTests-Info.plist */,
+				834DEA2D1356705A000191D9 /* InfoPlist.strings */,
+				834DEA301356705A000191D9 /* DelaunayTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		834DEA3D1356707B000191D9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				834DEA3E135670D7000191D9 /* NSArray+Delaunay.h */,
+				834DEA3F135670D7000191D9 /* NSArray+Delaunay.m */,
+				834DEA4D135688B1000191D9 /* NSMutableArray+Delaunay.h */,
+				834DEA4E135688B2000191D9 /* NSMutableArray+Delaunay.m */,
+				834DEA4313567176000191D9 /* DelaunayEdge.h */,
+				834DEA4413567176000191D9 /* DelaunayEdge.m */,
+				834DEA4813567227000191D9 /* DelaunaySite.h */,
+				834DEA4913567228000191D9 /* DelaunaySite.m */,
+				834DEA5213568C7B000191D9 /* DelaunayPolygon.h */,
+				834DEA5313568C7B000191D9 /* DelaunayPolygon.m */,
+				834DEA5713568EF8000191D9 /* DelaunayOrientation.h */,
+				834DEA5813568EF8000191D9 /* DelaunayOrientation.m */,
+				834DEA74135779EE000191D9 /* DelaunayEdgeReorderer.h */,
+				834DEA75135779EE000191D9 /* DelaunayEdgeReorderer.m */,
+				834DEA79135789DB000191D9 /* DelaunayVertex.h */,
+				834DEA7A135789DC000191D9 /* DelaunayVertex.m */,
+				834DEA7E13578A1E000191D9 /* DelaunayHalfEdge.h */,
+				834DEA7F13578A1E000191D9 /* DelaunayHalfEdge.m */,
+				834DEA831357D23B000191D9 /* DelaunayLineSegment.h */,
+				834DEA841357D23C000191D9 /* DelaunayLineSegment.m */,
+				834DEA8A1357E742000191D9 /* DelaunayCoordinate.h */,
+				83C64269135B5AFF00F54C9E /* DelaunayVoronoi.h */,
+				83C6426A135B5AFF00F54C9E /* DelaunayVoronoi.m */,
+				83C6426E135B6E0400F54C9E /* DelaunaySiteList.h */,
+				83C6426F135B6E0400F54C9E /* DelaunaySiteList.m */,
+				83C64273135B754000F54C9E /* DelaunayHalfEdgePriorityQueue.h */,
+				83C64274135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m */,
+				83C64278135B764800F54C9E /* DelaunayEdgeList.h */,
+				83C64279135B764800F54C9E /* DelaunayEdgeList.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		83C6427D135BA2BE00F54C9E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				83C6427E135BA2D800F54C9E /* DelaunayVoronoiTests.h */,
+				83C6427F135BA2D800F54C9E /* DelaunayVoronoiTests.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		834DEA121356705A000191D9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834DEA40135670D7000191D9 /* NSArray+Delaunay.h in Headers */,
+				834DEA4513567176000191D9 /* DelaunayEdge.h in Headers */,
+				834DEA4A13567228000191D9 /* DelaunaySite.h in Headers */,
+				834DEA4F135688B2000191D9 /* NSMutableArray+Delaunay.h in Headers */,
+				834DEA5413568C7B000191D9 /* DelaunayPolygon.h in Headers */,
+				834DEA5913568EF8000191D9 /* DelaunayOrientation.h in Headers */,
+				834DEA76135779EE000191D9 /* DelaunayEdgeReorderer.h in Headers */,
+				834DEA7B135789DC000191D9 /* DelaunayVertex.h in Headers */,
+				834DEA8013578A1E000191D9 /* DelaunayHalfEdge.h in Headers */,
+				834DEA851357D23C000191D9 /* DelaunayLineSegment.h in Headers */,
+				834DEA891357D72C000191D9 /* Delaunay.h in Headers */,
+				834DEA8B1357E743000191D9 /* DelaunayCoordinate.h in Headers */,
+				83C6426B135B5AFF00F54C9E /* DelaunayVoronoi.h in Headers */,
+				83C64270135B6E0400F54C9E /* DelaunaySiteList.h in Headers */,
+				83C64275135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.h in Headers */,
+				83C6427A135B764800F54C9E /* DelaunayEdgeList.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		834DEA131356705A000191D9 /* Delaunay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 834DEA371356705A000191D9 /* Build configuration list for PBXNativeTarget "Delaunay" */;
+			buildPhases = (
+				834DEA101356705A000191D9 /* Sources */,
+				834DEA111356705A000191D9 /* Frameworks */,
+				834DEA121356705A000191D9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Delaunay;
+			productName = Delaunay;
+			productReference = 834DEA141356705A000191D9 /* libDelaunay.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		834DEA201356705A000191D9 /* DelaunayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 834DEA3A1356705A000191D9 /* Build configuration list for PBXNativeTarget "DelaunayTests" */;
+			buildPhases = (
+				834DEA1C1356705A000191D9 /* Sources */,
+				834DEA1D1356705A000191D9 /* Frameworks */,
+				834DEA1E1356705A000191D9 /* Resources */,
+				834DEA1F1356705A000191D9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				834DEA281356705A000191D9 /* PBXTargetDependency */,
+			);
+			name = DelaunayTests;
+			productName = DelaunayTests;
+			productReference = 834DEA211356705A000191D9 /* DelaunayTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		834DEA0B1356705A000191D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "ZWorkbench, Inc.";
+			};
+			buildConfigurationList = 834DEA0E1356705A000191D9 /* Build configuration list for PBXProject "Delaunay" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 834DEA091356705A000191D9;
+			productRefGroup = 834DEA151356705A000191D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				834DEA131356705A000191D9 /* Delaunay */,
+				834DEA201356705A000191D9 /* DelaunayTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		834DEA1E1356705A000191D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834DEA2F1356705A000191D9 /* InfoPlist.strings in Resources */,
+				834DEA321356705A000191D9 /* DelaunayTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		834DEA1F1356705A000191D9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		834DEA101356705A000191D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834DEA41135670D7000191D9 /* NSArray+Delaunay.m in Sources */,
+				834DEA4613567176000191D9 /* DelaunayEdge.m in Sources */,
+				834DEA4B13567228000191D9 /* DelaunaySite.m in Sources */,
+				834DEA50135688B2000191D9 /* NSMutableArray+Delaunay.m in Sources */,
+				834DEA5513568C7B000191D9 /* DelaunayPolygon.m in Sources */,
+				834DEA5A13568EF8000191D9 /* DelaunayOrientation.m in Sources */,
+				834DEA77135779EE000191D9 /* DelaunayEdgeReorderer.m in Sources */,
+				834DEA7C135789DC000191D9 /* DelaunayVertex.m in Sources */,
+				834DEA8113578A1E000191D9 /* DelaunayHalfEdge.m in Sources */,
+				834DEA861357D23C000191D9 /* DelaunayLineSegment.m in Sources */,
+				83C6426C135B5AFF00F54C9E /* DelaunayVoronoi.m in Sources */,
+				83C64271135B6E0400F54C9E /* DelaunaySiteList.m in Sources */,
+				83C64276135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m in Sources */,
+				83C6427B135B764800F54C9E /* DelaunayEdgeList.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		834DEA1C1356705A000191D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834DEA341356705A000191D9 /* DelaunayTests.m in Sources */,
+				834DEA42135670D7000191D9 /* NSArray+Delaunay.m in Sources */,
+				834DEA4713567176000191D9 /* DelaunayEdge.m in Sources */,
+				834DEA4C13567228000191D9 /* DelaunaySite.m in Sources */,
+				834DEA51135688B2000191D9 /* NSMutableArray+Delaunay.m in Sources */,
+				834DEA5613568C7B000191D9 /* DelaunayPolygon.m in Sources */,
+				834DEA5B13568EF8000191D9 /* DelaunayOrientation.m in Sources */,
+				834DEA78135779EE000191D9 /* DelaunayEdgeReorderer.m in Sources */,
+				834DEA7D135789DC000191D9 /* DelaunayVertex.m in Sources */,
+				834DEA8213578A1E000191D9 /* DelaunayHalfEdge.m in Sources */,
+				834DEA871357D23C000191D9 /* DelaunayLineSegment.m in Sources */,
+				83C6426D135B5AFF00F54C9E /* DelaunayVoronoi.m in Sources */,
+				83C64272135B6E0400F54C9E /* DelaunaySiteList.m in Sources */,
+				83C64277135B754100F54C9E /* DelaunayHalfEdgePriorityQueue.m in Sources */,
+				83C6427C135B764800F54C9E /* DelaunayEdgeList.m in Sources */,
+				83C64280135BA2D800F54C9E /* DelaunayVoronoiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		834DEA281356705A000191D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 834DEA131356705A000191D9 /* Delaunay */;
+			targetProxy = 834DEA271356705A000191D9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		834DEA2D1356705A000191D9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				834DEA2E1356705A000191D9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		834DEA351356705A000191D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		834DEA361356705A000191D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		834DEA381356705A000191D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/Delaunay.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Delaunay/Delaunay-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		834DEA391356705A000191D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/Delaunay.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Delaunay/Delaunay-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		834DEA3B1356705A000191D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DelaunayTests/DelaunayTests-Prefix.pch";
+				INFOPLIST_FILE = "DelaunayTests/DelaunayTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		834DEA3C1356705A000191D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DelaunayTests/DelaunayTests-Prefix.pch";
+				INFOPLIST_FILE = "DelaunayTests/DelaunayTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		834DEA0E1356705A000191D9 /* Build configuration list for PBXProject "Delaunay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834DEA351356705A000191D9 /* Debug */,
+				834DEA361356705A000191D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		834DEA371356705A000191D9 /* Build configuration list for PBXNativeTarget "Delaunay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834DEA381356705A000191D9 /* Debug */,
+				834DEA391356705A000191D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		834DEA3A1356705A000191D9 /* Build configuration list for PBXNativeTarget "DelaunayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834DEA3B1356705A000191D9 /* Debug */,
+				834DEA3C1356705A000191D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 834DEA0B1356705A000191D9 /* Project object */;
+}
