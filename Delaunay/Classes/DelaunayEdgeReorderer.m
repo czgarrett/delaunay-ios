@@ -51,7 +51,7 @@
       firstPoint = edge.leftSite;
       lastPoint = edge.rightSite;
    }
-   if (firstPoint == [DelaunayVertex vertexAtInfinity] || lastPoint == [DelaunayVertex vertexAtInfinity]) {
+   if (![firstPoint isReal] || ![lastPoint isReal]) {
       return [NSMutableArray array];
    }
    [doneItems replaceObjectAtIndex: i withObject: [NSNumber numberWithBool: YES]];
@@ -75,7 +75,7 @@
             leftPoint = edge.leftSite;
             rightPoint = edge.rightSite;
          }
-         if (leftPoint == [DelaunayVertex vertexAtInfinity] || rightPoint == [DelaunayVertex vertexAtInfinity])
+         if (![leftPoint isReal] || ![rightPoint isReal])
          {
             return [NSMutableArray array];
          }

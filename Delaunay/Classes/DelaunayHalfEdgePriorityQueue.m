@@ -20,6 +20,7 @@
    if ((self = [super init])) {
       minY = _minY;
       deltaY = _deltaY;
+      maxY = minY+deltaY;
       hashSize = 4*_sqrtNumSites;
       count = 0;
       minBucket = 0;
@@ -36,22 +37,29 @@
    return [NSString stringWithFormat: @"HalfEdgePriorityQueue (minY: %f deltaY: %f hashSize: %d count: %d minBucket: %d hash: %@", minY, deltaY, hashSize, count, minBucket, hash];
 }
 
-- (void) insert: (DelaunayHalfEdge *) halfEdge {
+- (void) insert: (DelaunayHalfEdge *) halfEdge vertex: (DelaunayVertex *) v offset: (CGFloat) offset {
    DelaunayHalfEdge *previous, *next;
-   NSInteger insertionBucket = [self bucket: halfEdge];
-   if (insertionBucket < minBucket) {
-      minBucket = insertionBucket;
-   }
-   previous = [hash objectAtIndex: insertionBucket];
-   while ((next = [previous nextInPriorityQueue]) != nil && (halfEdge.ystar > next.ystar || (halfEdge.ystar == next.ystar && halfEdge.vertex.x > next.vertex.x))) {
+   halfEdge.vertex = v;
+   halfEdge.ystar = v.y + offset;
+
+   previous = [hash objectAtIndex: [self bucket: halfEdge]];
+   while ((next = [previous nextInPriorityQueue]) != nil && (halfEdge.ystar > next.ystar || (halfEdge.ystar == next.ystar && v.x > next.vertex.x))) {
       previous = next;
    }
    halfEdge.nextInPriorityQueue = previous.nextInPriorityQueue;
    previous.nextInPriorityQueue = halfEdge;
+   NSLog(@"Assigned next:");
+   NSLog(@"%@", halfEdge);
+   NSLog(@"%@", halfEdge.nextInPriorityQueue);
    count++;
 }
 
 - (void) remove: (DelaunayHalfEdge *) halfEdge {
+   if (halfEdge.vertex) {
+      //NSLog(@"Remove halfEdge with vertex at %f,%f", halfEdge.vertex.x, halfEdge.vertex.y);
+   } else {
+      //NSLog(@"Remove halfEdge with null vertex");
+   }
    DelaunayHalfEdge *previous;
    NSInteger removalBucket = [self bucket: halfEdge];
    
@@ -65,14 +73,29 @@
       previous.nextInPriorityQueue = halfEdge.nextInPriorityQueue;
       count--;
       halfEdge.vertex = nil;
-      halfEdge.nextInPriorityQueue = nil;
    }
 }
 
-- (NSInteger) bucket: (DelaunayHalfEdge *) halfEdge {
-   NSInteger bucket = (halfEdge.ystar - minY)/deltaY * hashSize;
-   if (bucket < 0) bucket = 0;
-   if (bucket >= hashSize) bucket = hashSize - 1;
+- (NSInteger) bucket: (DelaunayHalfEdge *) he {
+   NSInteger bucket;
+   if (he.ystar < minY)  {
+     bucket = 0; 
+   } else if (he.ystar >= maxY) {
+     bucket = hashSize-1; 
+   } else {
+    bucket = (he.ystar - minY)/deltaY * hashSize;  
+   }
+   if (bucket < 0) {
+      bucket = 0 ;
+   }
+   if (bucket >= hashSize)
+   {
+      bucket = hashSize-1 ;
+   }
+   if (bucket < minBucket)
+   {
+      minBucket = bucket ;
+   }
    return bucket;
 }
 
@@ -104,7 +127,6 @@
    
    [[hash objectAtIndex: minBucket] setNextInPriorityQueue: result.nextInPriorityQueue];
    count--;
-   result.nextInPriorityQueue = nil;
    return result;
 }
 

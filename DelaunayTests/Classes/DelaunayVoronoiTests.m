@@ -14,16 +14,19 @@
 @implementation DelaunayVoronoiTests
 
 - (void)setUp {
-   point0 = CGPointMake(0, 0);
-   point1 = CGPointMake(5, 5);
-   point2 = CGPointMake(0, 10);
-   point3 = CGPointMake(-10, -10);
+   point0 = CGPointMake(1,5);
+   point1 = CGPointMake(5,1);
+   point2 = CGPointMake(9,5);
+   point3 = CGPointMake(5,9);
    points = [NSMutableArray arrayWithObjects: [NSValue valueWithCGPoint: point0],
                                               [NSValue valueWithCGPoint: point1],
                                               [NSValue valueWithCGPoint: point2],
-                                              //[NSValue valueWithCGPoint: point3],
+                                              [NSValue valueWithCGPoint: point3],
+                                              [NSValue valueWithCGPoint: CGPointMake(13,1)],
+                                              [NSValue valueWithCGPoint: CGPointMake(13,9)],
+                                              [NSValue valueWithCGPoint: CGPointMake(17,5)],
                                               nil];
-   plotBounds = CGRectMake(-20, -20, 40, 40);
+   plotBounds = CGRectMake(0, 0, 20, 20);
    voronoi = [DelaunayVoronoi voronoiWithPoints: points plotBounds: plotBounds];
    [voronoi retain];
    [points retain];
@@ -34,14 +37,20 @@
    [points release];
 }
 
-/*
-- (void) testCorrectNumberOfEdges {
-   NSInteger expected = 3;
+- (void) testCorrectNumberOfEdges { 
+   NSInteger expected = 12;
    NSInteger count = [voronoi.edges count];
    NSLog(@"%@", voronoi);
-   STAssertTrue(count == expected, @"Incorrect number of voronoi edges.  Expected %d, got %d", expected, count);
+   STAssertEquals(count, expected, @"Incorrect number of voronoi edges.");
 }
- */
+
+- (void) testCorrectNumberOfPopulatedRegions { 
+   NSInteger regionCount = 0;
+   for (NSMutableArray *region in [voronoi regions]) {
+      if ([region count] > 0) regionCount++;
+   }
+   STAssertEquals(regionCount, 1, @"Incorrect number of regions.");
+}
 
 - (void) testRegionsHaveNoDuplicatedPoints {
    for (NSArray *region in [voronoi regions])   {
@@ -67,9 +76,11 @@
 {
    for (NSMutableArray *region in [voronoi regions])
    {
-      NSLog(@"Region: %@", region);
-      DelaunayPolygon *polygon = [DelaunayPolygon polygonWithVertices: region];
-      STAssertEquals([polygon winding], DelaunayWindingCounterClockwise, @"Incorrect winding");
+      if ([region count] > 0) {
+         NSLog(@"Region: %@", region);
+         DelaunayPolygon *polygon = [DelaunayPolygon polygonWithVertices: region];
+         STAssertEquals([polygon winding], DelaunayWindingCounterClockwise, @"Incorrect winding");
+      }
    }
 }
 

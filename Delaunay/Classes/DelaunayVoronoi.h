@@ -29,6 +29,7 @@
 - (void) fortunesAlgorithm;
 -(DelaunaySite *) leftRegion: (DelaunayHalfEdge *) he;
 -(DelaunaySite *) rightRegion: (DelaunayHalfEdge *) he;
+-(NSArray *) regionForPoint: (CGPoint) p;
 - (NSArray *) regions;
 
 

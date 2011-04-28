@@ -38,6 +38,7 @@ typedef enum {
 - (void) move:(CGPoint) point;
 - (void) clear;
 - (void) addEdge: (DelaunayEdge *) edge;
+- (NSMutableArray *) region;
 - (DelaunayEdge *) nearestEdge;
 - (NSArray *) neighborSites;
 - (NSMutableArray *) region: (CGRect) clippingBounds;

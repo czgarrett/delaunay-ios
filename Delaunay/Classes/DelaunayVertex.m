@@ -17,27 +17,31 @@
 
 DelaunayVertex *vertexAtInfinity;
 
-@synthesize coordinates;
+@synthesize coordinates, index;
 
 + (DelaunayVertex *) vertexWithX: (CGFloat) x y: (CGFloat) y {
-   DelaunayVertex *vertex = [[[DelaunayVertex alloc] init] autorelease];
-   vertex.coordinates = CGPointMake(x, y);
-   return vertex;
+   if (x == NAN || y == NAN) {
+      return [self vertexAtInfinity];
+   } else {
+      DelaunayVertex *vertex = [[[DelaunayVertex alloc] init] autorelease];
+      vertex.coordinates = CGPointMake(x, y);
+      vertex.index = -1;
+      return vertex;
+   }
 }
 + (DelaunayVertex *) vertexAtInfinity {
    if(!vertexAtInfinity) {
       vertexAtInfinity = [self vertexWithX: NAN y: NAN];
+      vertexAtInfinity.index = -1;
       [vertexAtInfinity retain];
    }
    return vertexAtInfinity;
 }
 
 + (DelaunayVertex *) intersect: (DelaunayHalfEdge *) halfEdge0 with: (DelaunayHalfEdge *) halfEdge1 {
-   NSLog(@"Intersecting \n%@ \nwith \n%@", halfEdge0, halfEdge1);
-   DelaunayEdge *edge0, *edge1, *edge;
-   DelaunayHalfEdge *halfEdge;
+   DelaunayEdge *edge0, *edge1, *lowerEdge;
+   DelaunayHalfEdge *lowerHalfEdge;
    CGFloat determinant, intersectionX, intersectionY;
-   BOOL rightOfSite;
    
    edge0 = halfEdge0.edge;
    edge1 = halfEdge1.edge;
@@ -60,30 +64,36 @@ DelaunayVertex *vertexAtInfinity;
    intersectionX = (edge0.c * edge1.b - edge1.c * edge0.b)/determinant;
    intersectionY = (edge1.c * edge0.a - edge0.c * edge1.a)/determinant;
    
-   if ([DelaunayVoronoi compareByYThenXWithSite: edge0.rightSite point: edge1.rightSite.coordinates] == NSOrderedAscending)
+   if ((edge0.rightSite.y < edge1.rightSite.y) || 
+       (edge0.rightSite.y == edge1.rightSite.y && edge0.rightSite.x < edge1.rightSite.x)) 
    {
-      halfEdge = halfEdge0; 
-      edge = edge0;
+      lowerHalfEdge = halfEdge0; 
+      lowerEdge = edge0;
    }
    else
    {
-      halfEdge = halfEdge1; 
-      edge = edge1;
+      lowerHalfEdge = halfEdge1; 
+      lowerEdge = edge1;
    }
-   rightOfSite = intersectionX >= edge.rightSite.x;
-   if ((rightOfSite && [halfEdge.orientation isLeft])
-       ||  (!rightOfSite && [halfEdge.orientation isRight]))
+   BOOL rightOfSite;
+   rightOfSite = intersectionX >= lowerEdge.rightSite.x;
+   if ((rightOfSite && [lowerHalfEdge.orientation isLeft])
+       ||  (!rightOfSite && [lowerHalfEdge.orientation isRight]))
    {
       return nil;
    }
    
-   return [DelaunayVertex vertexWithX: intersectionX y: intersectionY];
+   DelaunayVertex *v = [DelaunayVertex vertexWithX: intersectionX y: intersectionY];
+   return v;
 }
 
 - (NSString *) description {
-   return [NSString stringWithFormat: @"(%f, %f)", coordinates.x, coordinates.y];
+   return [NSString stringWithFormat: @"V%d: (%f, %f)", self.index, coordinates.x, coordinates.y];
 }
 
+- (BOOL) isReal {
+   return self.index >= 0;
+}
 
 
 - (CGFloat) x {

@@ -27,5 +27,6 @@
 }
 
 - (void) testRegionsHaveNoDuplicatedPoints;
+- (void) testCorrectNumberOfEdges;
 
 @end

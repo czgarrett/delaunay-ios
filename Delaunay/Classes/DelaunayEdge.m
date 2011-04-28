@@ -66,13 +66,9 @@ DelaunayEdge *deletedEdge;
 - (NSString *) description {
    NSString *siteDesc = @"";
    NSString *vertexDesc = @"";
-   if (leftSite) {
-      siteDesc = [NSString stringWithFormat: @"sites: (%f,%f)-(%f,%f)", leftSite.x, leftSite.y, rightSite.x, rightSite.y];
-   }
-   if (leftVertex) {
-      vertexDesc = [NSString stringWithFormat: @"vertices: (%f,%f)-(%f,%f)", leftVertex.x, leftVertex.y, rightVertex.x, rightVertex.y];
-   }
-   return [NSString stringWithFormat: @"Edge (%@ %@ a,b,c: %f,%f,%f)", siteDesc, vertexDesc, a, b, c];
+   siteDesc =   [NSString stringWithFormat: @"S: %d-%d", leftSite == nil ? -1 : leftSite.index, rightSite == nil ? -1 : rightSite.index];
+   vertexDesc = [NSString stringWithFormat: @"V: %d-%d", leftVertex == nil ? -1 : leftVertex.index, rightVertex == nil ? -1 : rightVertex.index];
+   return [NSString stringWithFormat: @"E (%@ %@ a,b,c: %f,%f,%f)", siteDesc, vertexDesc, a, b, c];
 }
 
 - (CGPoint) clippedPoint: (DelaunayOrientation *) orientation {
@@ -96,6 +92,9 @@ DelaunayEdge *deletedEdge;
       self.leftVertex = vertex;
    } else {
       self.rightVertex = vertex;
+   }
+   if (self.leftVertex && self.rightVertex) {
+      NSLog(@"%@", self);
    }
 }
 

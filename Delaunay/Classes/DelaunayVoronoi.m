@@ -66,8 +66,19 @@
    }
 }
 
+-(NSArray *) regionForPoint: (CGPoint) p {
+   DelaunaySite *site = [sitesIndexedByLocation objectForKey: [NSValue valueWithCGPoint: p]];
+   NSLog(@"Site for point (%f,%f) is %@", p.x, p.y, site);
+   if (site) {
+      return [site region: self.plotBounds];
+   } else {
+      return [NSArray array];
+   }
+}
+
+
 - (void) addSite: (NSValue *) pointValue index: (NSInteger) index{
-   CGFloat weight = (CGFloat)random() / RANDOM_MAX;
+   CGFloat weight = ((CGFloat)random()) / RANDOM_MAX;
    DelaunaySite *site = [DelaunaySite siteWithPoint: [pointValue CGPointValue] index: index weight: weight];
    [self.siteList addSite: site];
    [self.sitesIndexedByLocation setObject: site forKey: pointValue];
@@ -90,6 +101,12 @@
    DelaunayHalfEdge *secondBisector;
    DelaunayHalfEdge *thirdBisector;
    DelaunayEdge *edge;
+   
+   newintstar.x = 0;
+   newintstar.y = 0;
+   
+   NSInteger vertexIndex = 0;
+   
    CGRect dataBounds = [self.siteList sitesBounds];
    int sqrt_nsites = (int) sqrtf((float)[self.siteList count] + 4);
    DelaunayHalfEdgePriorityQueue *heap = [DelaunayHalfEdgePriorityQueue queueWithMinY: dataBounds.origin.y 
@@ -100,83 +117,67 @@
                                                       deltaX: dataBounds.size.width 
                                                sqrtNumSites: sqrt_nsites];
    
-   NSMutableArray *halfEdges = [NSMutableArray array];
-   NSMutableArray *vertices = [NSMutableArray array];
+   NSMutableArray *halfEdgesForCurrentSite = [NSMutableArray array];
 
    bottomMostSite = [self.siteList next];
+   NSLog(@"%@", bottomMostSite);
    newSite = [self.siteList next];
    
    NSInteger loopCount = 0;
    while (true) {
-      NSLog(@"\n*********************** LOOP %d ***************************\n", loopCount);
-      NSLog(@"newSite: %@", newSite);
-      loopCount++;
+      loopCount++;  
       //NSLog(@"heap = %@", heap);
-      if ([heap empty] == NO) {
+      if (![heap empty]) {
          newintstar = [heap min];
-         NSLog(@"newintstar = %f, %f", newintstar.x, newintstar.y);
       }
       
-      if ((newSite != nil) && ([heap empty] || [DelaunayVoronoi compareByYThenXWithSite: newSite point: newintstar] == NSOrderedAscending))
+      BOOL newSiteIsLessThanNewInTStar = [DelaunayVoronoi compareByYThenXWithSite: newSite point: newintstar] == NSOrderedAscending;
+      if ((newSite != nil) && ([heap empty] || newSiteIsLessThanNewInTStar))
       {
-
+         NSLog(@"%@", newSite);
          lbnd = [edgeList edgeListLeftNeighbor: newSite.coordinates];	// the Halfedge just to the left of newSite
          rbnd = [lbnd edgeListRightNeighbor];		// the Halfedge just to the right
-         NSLog(@"lbnd: %@", lbnd);
-         NSLog(@"rbnd: %@", rbnd);
          bottomSite = [self rightRegion: lbnd];		// this is the same as leftRegion(rbnd)
          // this Site determines the region containing the new site
-         NSLog(@"bottomSite: %@", bottomSite);
          
          // Step 9:
          edge = [DelaunayEdge edgeBisectingSite: bottomSite and: newSite];
-         NSLog(@"new edge: %@", edge);
          [self.edges addObject: edge];
          
          firstBisector = [DelaunayHalfEdge halfEdgeWithEdge: edge orientation: [DelaunayOrientation left]];
-         NSLog(@"first bisector: %@", firstBisector);
-         [halfEdges addObject: firstBisector];
+         [halfEdgesForCurrentSite addObject: firstBisector];
 
          // inserting two Halfedges into edgeList constitutes Step 10:
          // insert bisector to the right of lbnd:
-         [edgeList insert: firstBisector toRightOf: lbnd];
+         [edgeList toRightOf: lbnd insert:firstBisector];
          
          // first half of Step 11:
          if ((vertex = [DelaunayVertex intersect: lbnd with: firstBisector]) != nil) 
          {
-            [vertices addObject: vertex];
             [heap remove: lbnd];
-            
-            lbnd.vertex = vertex;
-            lbnd.ystar = vertex.y + DISTANCE(newSite, vertex);
-            [heap insert: lbnd];
+            [heap insert: lbnd vertex: vertex offset: DISTANCE(newSite, vertex)];
          }
          
          lbnd = firstBisector;
          secondBisector = [DelaunayHalfEdge halfEdgeWithEdge: edge orientation: [DelaunayOrientation right]];
-         NSLog(@"second bisector: %@", secondBisector);
-         [halfEdges addObject: secondBisector];
+         [halfEdgesForCurrentSite addObject: secondBisector];
 
          // second Halfedge for Step 10:
          // insert bisector to the right of lbnd:
-         [edgeList insert: secondBisector toRightOf: lbnd];
+         [edgeList toRightOf: lbnd insert: secondBisector];
 
          
          // second half of Step 11:
          if ((vertex = [DelaunayVertex intersect: secondBisector with: rbnd]) != nil)
          {
-            [vertices addObject: vertex];
-
-            secondBisector.vertex = vertex;
-            secondBisector.ystar = vertex.y + DISTANCE(newSite, vertex);
-            [heap insert: secondBisector];
-
+            [heap insert: secondBisector vertex: vertex offset: DISTANCE(newSite, vertex)];
          }
          
          newSite = [self.siteList next];
       } else if (![heap empty]) {
          /* intersection is smallest */
          lbnd = [heap extractMin];
+         NSLog(@"Extracted min: %@", lbnd);
          llbnd = lbnd.edgeListLeftNeighbor;
          rbnd = lbnd.edgeListRightNeighbor;
          rrbnd = rbnd.edgeListRightNeighbor;
@@ -187,6 +188,8 @@
          //_triangles.push(new Triangle(bottomSite, topSite, rightRegion(lbnd)));
          
          v = lbnd.vertex;
+         v.index = vertexIndex++;
+         NSLog(@"%@", v);
          [lbnd.edge setVertex: v withOrientation: lbnd.orientation];
          [rbnd.edge setVertex: v withOrientation: rbnd.orientation];
          [edgeList remove: lbnd];
@@ -204,24 +207,18 @@
          edge = [DelaunayEdge edgeBisectingSite: bottomSite and: topSite];
          [edges addObject: edge];
          thirdBisector = [DelaunayHalfEdge halfEdgeWithEdge: edge orientation: orientation];
-         [halfEdges addObject: thirdBisector];
-         [edgeList insert: thirdBisector toRightOf: llbnd];
+         [halfEdgesForCurrentSite addObject: thirdBisector];
+         [edgeList toRightOf: llbnd insert: thirdBisector];
 
          [edge setVertex: v withOrientation: [orientation opposite]];
          if ((vertex = [DelaunayVertex intersect: llbnd with: thirdBisector]) != nil)
          {
-            [vertices addObject: vertex];
             [heap remove: llbnd];
-            llbnd.vertex = vertex;
-            llbnd.ystar = vertex.y + DISTANCE(bottomSite, vertex);
-            [heap insert: llbnd];
+            [heap insert: llbnd vertex: vertex offset: DISTANCE(bottomSite, vertex)];
          }
          if ((vertex = [DelaunayVertex intersect: thirdBisector with: rrbnd]) != nil)
          {
-            [vertices addObject: vertex];
-            thirdBisector.vertex = vertex;
-            thirdBisector.ystar = vertex.y + DISTANCE(bottomSite, vertex);
-            [heap insert: thirdBisector];
+            [heap insert: thirdBisector vertex: vertex offset: DISTANCE(bottomSite, vertex)];
          }
       }
       else
@@ -229,18 +226,25 @@
          break;
       }
    }
-   [halfEdges removeAllObjects];
+   
+   for( lbnd = edgeList.leftEnd.edgeListRightNeighbor ;
+       lbnd != edgeList.rightEnd ;
+       lbnd = lbnd.edgeListRightNeighbor) {
+      NSLog(@"%@", lbnd.edge);
+   }
+
    // we need the vertices to clip the edges
+   /*
    for (DelaunayEdge *edge in edges)
    {
       [edge clipVertices: plotBounds];
    }
-   [vertices removeAllObjects];
+    */
 }
 
 -(DelaunaySite *) leftRegion: (DelaunayHalfEdge *) he {
    DelaunayEdge *edge = he.edge;
-   if (edge == NULL)
+   if (edge == nil)
    {
       return bottomMostSite;
    }

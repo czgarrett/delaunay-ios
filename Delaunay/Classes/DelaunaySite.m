@@ -36,26 +36,15 @@
 }
 
 - (NSComparisonResult) compare: (DelaunaySite *) other {
-   NSComparisonResult result = [DelaunayVoronoi compareByYThenXWithSite: self point: other.coordinates];
-   NSInteger tempIndex;
-   if (result == NSOrderedAscending) {
-      if (self.index > other.index) {
-         tempIndex = self.index;
-         self.index = other.index;
-         other.index = tempIndex;
-      }
-   } else if (result == NSOrderedDescending) {
-      if (other.index > self.index) {
-         tempIndex = other.index;
-         other.index = self.index;
-         self.index = tempIndex;
-      }
-   }
-   return result;
+   return [DelaunayVoronoi compareByYThenXWithSite: self point: other.coordinates];
 }
 
 - (NSString *) description {
-   return [NSString stringWithFormat: @"Site (%f, %f) index=%d", coordinates.x, coordinates.y, index];
+   return [NSString stringWithFormat: @"S%d (%f, %f)", index, coordinates.x, coordinates.y];
+}
+
+- (BOOL) isReal {
+   return YES;
 }
 
 - (CGFloat) x {
@@ -119,6 +108,43 @@
    return nil;
 }
 
+- (NSMutableArray *) region {
+   NSMutableArray *unfilteredVertices = [NSMutableArray array];
+   for (DelaunayEdge *edge in self.edges) {
+      if (![edge.leftVertex isReal] || ![edge.rightVertex isReal]) {
+         // it's on the edge, return an empty region
+         return [NSMutableArray array];
+      }
+      [unfilteredVertices addPoint: edge.leftVertex.coordinates];
+      [unfilteredVertices addPoint: edge.rightVertex.coordinates];
+      [unfilteredVertices sortUsingComparator: (NSComparator)^(id obj1, id obj2) {
+         CGPoint p1 = [obj1 CGPointValue];
+         CGPoint p2 = [obj2 CGPointValue];
+         float angle1 = atan2f(p1.x - coordinates.x, p1.y - coordinates.y); // note risk of div/0, should be handled ok
+         float angle2 = atan2f(p2.x - coordinates.x, p2.y - coordinates.y);
+         if (angle1 < angle2) {
+            // We want the sites to go counterclockwise
+            // clockwise = larger values of angle
+            return NSOrderedDescending;
+         } else if (angle1 > angle2) {
+            return NSOrderedAscending;
+         } else {
+            return NSOrderedSame;
+         }
+      }];
+   }
+   NSMutableArray *filteredVertices = [NSMutableArray arrayWithObject: [unfilteredVertices objectAtIndex: 0]];
+   // Remove duplicate points, or points close to dups
+   for (int i=1; i< [unfilteredVertices count]; i++) {
+      CGPoint p1 = [[unfilteredVertices objectAtIndex: i-1] CGPointValue];
+      CGPoint p2 = [[unfilteredVertices objectAtIndex: i] CGPointValue];
+      if (DISTANCE(p1,p2) > EPSILON) {
+         [filteredVertices addPoint: p2];
+      }
+   }
+   return filteredVertices;
+}
+
 - (NSMutableArray *) region: (CGRect) clippingBounds {
    if (self.edges && [self.edges count] > 0) {
       if (!edgeOrientations) {
@@ -144,9 +170,11 @@
 
 - (NSMutableArray *) clipToBounds: (CGRect) bounds {
    NSMutableArray *points = [NSMutableArray array];
+   //NSMutableSet *uniquePoints = [NSMutableSet set];
    NSInteger n = [edges count];
    NSInteger i = 0;
    DelaunayEdge *edge;
+   
    while (i<n && ![[edges objectAtIndex: i] visible]) {
       i++;
    }
@@ -156,8 +184,22 @@
    }
    edge = [edges objectAtIndex: i];
    DelaunayOrientation *orientation = [edgeOrientations objectAtIndex: i];
+
    [points addPoint: [edge clippedPoint: orientation]];
    [points addPoint: [edge clippedPoint: [orientation opposite]]];
+    
+   /*
+   NSValue *firstPoint = [NSValue valueWithCGPoint: [edge clippedPoint: orientation]];
+   if (![uniquePoints containsObject: firstPoint]) {
+      [points addObject: firstPoint];
+      [uniquePoints addObject: firstPoint];
+   }
+   NSValue *secondPoint = [NSValue valueWithCGPoint: [edge clippedPoint: [orientation opposite]]];
+   if (![uniquePoints containsObject: secondPoint]) {
+      [points addObject: secondPoint];
+      [uniquePoints addObject: secondPoint];
+   }
+   */
    
    for (int j=i+1; j<n; j++) {
       edge = [edges objectAtIndex: j];
@@ -283,7 +325,7 @@
       [points addPoint: newPoint];
    }
    CGPoint newRightPoint = [newEdge clippedPoint: [newOrientation opposite]];
-   if (![self closeEnough: [points pointAtIndex: 0] to:newRightPoint]) 
+   if (![self closeEnough: [[points objectAtIndex: 0] CGPointValue] to:newRightPoint]) 
    {
       [points addPoint: newRightPoint];
    }

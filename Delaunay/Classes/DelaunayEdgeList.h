@@ -24,7 +24,7 @@
 
 - (id) initWithMinX: (CGFloat) _minX deltaX: (CGFloat) _deltaX sqrtNumSites: (NSInteger) _sqrtNumSites;
 - (DelaunayHalfEdge *) edgeListLeftNeighbor: (CGPoint) p;
-- (void) insert: (DelaunayHalfEdge *) newHalfEdge toRightOf: (DelaunayHalfEdge *) lb;
+- (void) toRightOf: (DelaunayHalfEdge *) lb insert: (DelaunayHalfEdge *) newHalfEdge;
 - (void) remove: (DelaunayHalfEdge *) halfEdge;
 
 @end

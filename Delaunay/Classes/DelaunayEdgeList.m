@@ -42,7 +42,7 @@
 }
 
 // Insert newHalfedge to the right of lb 
-- (void) insert: (DelaunayHalfEdge *) newHalfEdge toRightOf: (DelaunayHalfEdge *) lb {
+- (void) toRightOf: (DelaunayHalfEdge *) lb insert: (DelaunayHalfEdge *) newHalfEdge {
    newHalfEdge.edgeListLeftNeighbor = lb;
    newHalfEdge.edgeListRightNeighbor = lb.edgeListRightNeighbor;
    lb.edgeListRightNeighbor.edgeListLeftNeighbor = newHalfEdge;
@@ -66,7 +66,7 @@
    
    if (b < 0 || b >= hashSize)
    {
-      return nullEdge;
+      return nil;
    }
    halfEdge = [hash objectAtIndex: b];
    if (halfEdge != nullEdge && halfEdge.edge == [DelaunayEdge deletedEdge])
@@ -74,11 +74,15 @@
       /* Hash table points to deleted halfedge.  Patch as necessary. */
       [hash replaceObjectAtIndex: b withObject: [NSNull null]];
       // still can't dispose halfEdge yet!
-      return nullEdge;
+      return nil;
    }
    else
    {
-      return halfEdge;
+      if (halfEdge == nullEdge) {
+         return nil;
+      } else {
+         return halfEdge;
+      }
    }
 }
 
@@ -100,22 +104,22 @@
       bucket = hashSize - 1;
    }
    halfEdge = [self hashForBucket: bucket];
-   if (halfEdge == nullEdge)
+   if (halfEdge == nil)
    {
       for (i = 1; true ; ++i)
       {
-         if ((halfEdge = [self hashForBucket: bucket - i]) != nullEdge) break;
-         if ((halfEdge = [self hashForBucket: bucket + i]) != nullEdge) break;
+         if ((halfEdge = [self hashForBucket: bucket - i]) != nil) break;
+         if ((halfEdge = [self hashForBucket: bucket + i]) != nil) break;
       }
    }
    /* Now search linear list of halfedges for the correct one */
-   if (halfEdge == leftEnd  || (halfEdge != rightEnd && [halfEdge isLeftOf: p]))
+   if (halfEdge == leftEnd  || (halfEdge != rightEnd && [halfEdge isRightOf: p]))
    {
       do
       {
          halfEdge = halfEdge.edgeListRightNeighbor;
       }
-      while (halfEdge != rightEnd && [halfEdge isLeftOf: p]);
+      while (halfEdge != rightEnd && [halfEdge isRightOf: p]);
       halfEdge = halfEdge.edgeListLeftNeighbor;
    }
    else
@@ -124,14 +128,16 @@
       {
          halfEdge = halfEdge.edgeListLeftNeighbor;
       }
-      while (halfEdge != leftEnd && ![halfEdge isLeftOf: p]);
+      while (halfEdge != leftEnd && ![halfEdge isRightOf: p]);
    }
    
    /* Update hash table and reference counts */
    if (bucket > 0 && bucket <hashSize - 1)
    {
+      if (halfEdge == nil) halfEdge = nullEdge;
       [hash replaceObjectAtIndex: bucket withObject: halfEdge];
    }
+   if (halfEdge == nullEdge) halfEdge = nil;
    return halfEdge;
 }
 

@@ -28,7 +28,7 @@
 + (DelaunayHalfEdge *) dummy;
 + (DelaunayHalfEdge *) halfEdgeWithEdge: (DelaunayEdge *)edge orientation: (DelaunayOrientation *) orientation;
 
-- (BOOL) isLeftOf: (CGPoint) p;
+- (BOOL) isRightOf: (CGPoint) p;
 
 
 

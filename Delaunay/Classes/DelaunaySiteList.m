@@ -11,6 +11,8 @@
 
 @implementation DelaunaySiteList
 
+@synthesize currentIndex, sites;
+
 + (DelaunaySiteList *) siteList {
    DelaunaySiteList *siteList = [[[DelaunaySiteList alloc] init] autorelease];
    return siteList;
@@ -28,6 +30,8 @@
    return [NSString stringWithFormat: @"SiteList (currentIndex: %d sorted: %d sites: %@", currentIndex, sorted, sites];
 }
 
+
+
 - (void) dealloc {
    [sites release];
    [super dealloc];
@@ -35,6 +39,12 @@
 
 - (CGRect) sitesBounds {
    if (!sorted) {
+      // Set the sites' indexes first
+      NSInteger newIndex = 0;
+      for (DelaunaySite *site in sites) {
+         site.index = newIndex;
+         newIndex++;
+      }
       [sites sortUsingSelector: @selector(compare:)];
       sorted = YES;
    }
@@ -69,7 +79,8 @@
 - (DelaunaySite *) next {
    NSAssert(sorted, @"Sites have not been sorted");
    if (currentIndex < [sites count]) {
-      return [sites objectAtIndex: currentIndex++];
+      DelaunaySite *site = [sites objectAtIndex: currentIndex++];
+      return site;
    }
    return nil;
 }
@@ -77,7 +88,7 @@
 - (NSArray *) regions: (CGRect) plotBounds {
    NSMutableArray *result = [NSMutableArray array];
    for (DelaunaySite *site in sites) {
-      [result addObject: [site region: plotBounds]];
+      [result addObject: [site region]];
    }
    return result;
 }

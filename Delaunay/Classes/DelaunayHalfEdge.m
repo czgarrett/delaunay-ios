@@ -30,11 +30,11 @@
 }
 
 - (NSString *) description {
-   return [NSString stringWithFormat: @"HalfEdge (id: %p vertex: %@ edge: %@ orientation: %@ leftNeighbor: %p rightNeighbor: %p nextInPriorityQueue: %p ystar: %f", 
-           self, vertex, edge, orientation, edgeListLeftNeighbor, edgeListRightNeighbor, nextInPriorityQueue, ystar];
+   return [NSString stringWithFormat: @"HalfEdge (id: %p vertex: %d edge: %d - %d orientation: %@ leftNeighbor: %p rightNeighbor: %p nextInPriorityQueue: %p ystar: %f", 
+           self, vertex == nil ? -100 : vertex.index, edge.leftSite ? edge.leftSite.index : -1, edge.rightSite ? edge.rightSite.index : -1, orientation, edgeListLeftNeighbor, edgeListRightNeighbor, nextInPriorityQueue, ystar];
 }
 
-- (BOOL) isLeftOf: (CGPoint) p {
+- (BOOL) isRightOf: (CGPoint) p {
    DelaunaySite *topSite;
    
    BOOL rightOfSite, above, fast;
@@ -48,7 +48,7 @@
    }
    if (!rightOfSite && [self.orientation isRight])
    {
-      return YES;
+      return NO;
    }
    
    if (edge.a == 1.0)
@@ -93,6 +93,6 @@
       above = t1 * t1 > t2 * t2 + t3 * t3;
    }
    return [self.orientation isLeft] ? above : !above;
-}
+} 
 
 @end

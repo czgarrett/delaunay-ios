@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class DelaunayHalfEdge;
+@class DelaunayHalfEdge, DelaunayVertex;
 
 @interface DelaunayHalfEdgePriorityQueue : NSObject {
    NSMutableArray *hash;
@@ -16,6 +16,7 @@
    NSInteger minBucket;
    NSInteger hashSize;
    CGFloat minY;
+   CGFloat maxY;
    CGFloat deltaY;
     
 }
@@ -23,7 +24,7 @@
 + (DelaunayHalfEdgePriorityQueue *) queueWithMinY: (CGFloat) minY deltaY: (CGFloat) deltaY sqrtNumSites: (NSInteger) sqrtNumSites;
 - (id) initWithMinY: (CGFloat) _minY deltaY: (CGFloat) _deltaY sqrtNumSites: (CGFloat) _sqrtNumSites;
 
-- (void) insert: (DelaunayHalfEdge *) halfEdge;
+- (void) insert: (DelaunayHalfEdge *) halfEdge vertex: (DelaunayVertex *) v offset: (CGFloat) offset;
 - (NSInteger) bucket: (DelaunayHalfEdge *) halfEdge;
 - (void) remove: (DelaunayHalfEdge *) halfEdge;
 - (BOOL) empty;

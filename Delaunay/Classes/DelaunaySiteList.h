@@ -16,6 +16,9 @@
    BOOL sorted;
 }
 
+@property(readonly) NSInteger currentIndex;
+@property(readonly) NSArray *sites;
+
 + (DelaunaySiteList *) siteList;
 - (CGRect) sitesBounds;
 - (void) addSite: (DelaunaySite *) site;
