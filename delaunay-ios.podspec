@@ -8,7 +8,7 @@ These are adapted from various other projects, but the biggest inspiration for t
   s.homepage	= "https://github.com/czgarrett/delaunay-ios"
   s.license = { :type => 'MIT' }
   s.author	= "Christopher Z. Garrett"
-  s.source  = { :git => "https://github.com/caidurbin/delaunay-ios.git", :tag => 'v1.0.0' }
+  s.source  = { :git => "https://github.com/czgarrett/delaunay-ios.git", :tag => 'v1.0.0' }
 
   s.ios.deployment_target = "7.0"
 
